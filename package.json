@@ -1,0 +1,28 @@
+{
+  "name": "texastopdressing",
+  "version": "1.0.0",
+  "scripts": {
+    "dev:hugo": "hugo server --environment development --port 1313 --disableFastRender --noHTTPCache --ignoreCache --cleanDestinationDir",
+    "dev:proxy": "node --inspect dev-proxy.js",
+    "dev:php": "php -S localhost:8000",
+    "dev:adb": "adb reverse tcp:1313 tcp:1313",
+    "dev:conadb": "concurrently \"npm run dev:hugo\" \"npm run dev:proxy\" \"npm run dev:php\" \"npm run dev:adb\"",
+    "dev": "concurrently \"npm run dev:hugo\" \"npm run dev:proxy\" \"npm run dev:php\"",
+    "build": "hugo --minify --environment development --cleanDestinationDir",
+    "clean": "rm -rf public resources"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "@tailwindcss/typography": "^0.5.9",
+    "concurrently": "^9.2.1",
+    "express": "^5.1.0",
+    "http-proxy-middleware": "^3.0.5",
+    "prettier": "^3.0.3",
+    "prettier-plugin-go-template": "^0.0.15",
+    "prettier-plugin-tailwindcss": "^0.5.6",
+    "tailwindcss": "^4.0.0"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.10"
+  }
+}

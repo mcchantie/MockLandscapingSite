@@ -1,0 +1,121 @@
+### Contact Us Form
+#Test without quote or attachments
+#POST http://127.0.0.1:8000/api/send_email.php
+#Content-Type: application/x-www-form-urlencoded
+#
+#first_name=John&last_name=Doe&email=john.doe@gmail.com&address=123+Example+St=&zip_code=77777&phone=123-123-1234&contact=phone&quote=off&message=Hi+there!
+
+#Test with quote and without attachments
+POST http://localhost:1414/api/send_email.php
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="first_name"
+
+John
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="last_name"
+
+Doe
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="email"
+
+john.doe@gmail.com
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="address"
+
+123 Example St
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="zip_code"
+
+77777
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="phone"
+
+123-123-1234
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="contact_preference"
+
+phone
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="quote"
+
+on
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="services[]"
+
+Aeration
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="services[]"
+
+Dethatching
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="message"
+
+Hi there!
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="website"  # Honeypot (empty)
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="attachments[]"; filename="aeration.jpg"
+Content-Type: image/jpeg
+
+< ./../../assets/images/aeration.jpg  # Adjusted relative path assuming .http is in api/test/
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+#POST http://localhost:1414/api/send_email.php
+#Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+#
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="first_name"
+#
+#John
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="last_name"
+#
+#Doe
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="email"
+#
+#john.doe@gmail.com
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="address"
+#
+#123 Example St
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="zip_code"
+#
+#77777
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="phone"
+#
+#123-123-1234
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="contact_preference"
+#
+#phone
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="quote"
+#
+#on
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="services[]"
+#
+#Aeration
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="services[]"
+#
+#Dethatching
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="message"
+#
+#Hi there!
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="website"  # Honeypot (empty)
+#
+#------WebKitFormBoundary7MA4YWxkTrZu0gW
+#Content-Disposition: form-data; name="attachments[]"; filename="TexasTopDressingHeroClips-clip9.mp4"
+#Content-Type: video/mp4
+#
+#< ../../TexasTopDressingHeroClips-clip9.mp4
+#------WebKitFormBoundary7MA4YWxkTrZu0gW--

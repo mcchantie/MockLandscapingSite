@@ -1,0 +1,19 @@
+{
+  "name": "Texas Top Dressing & Lawn Leveling",
+  "short_name": "Texas Top Dressing",
+  "icons": [
+    {
+      "src": "/logo-mini.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#000099",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

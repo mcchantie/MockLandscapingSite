@@ -1,0 +1,58 @@
+{{ $minify := ne hugo.Environment "development" }}
+{{ $built := resources.Get "js/about_us.js" | js.Build (dict "sourceMap" "external" "minify" $minify) }}
+{{ $js := $built | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ if not $minify }}
+{{ with $built.Data.SourceMap }}
+{{ $map := resources.FromString (printf "%s.map" $js.Name) . | fingerprint }}
+<link rel="prefetch" href="{{ $map.RelPermalink }}" as="fetch" crossorigin="anonymous">
+{{ end }}
+{{ end }}
+
+<section id="about-us" class="pt-[3vh] overflow-x-hidden">
+    <div class="flex flex-col lg:grid lg:grid-rows-1 lg:grid-cols-2 justify-center relative">
+<!--        <div class="flex flex-col md:grid md:grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 justify-center relative">-->
+<!--        <div class="grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 justify-center relative">-->
+            <!-- TEXT COLUMN -->
+            <div class="relative mx-[2vw] py-[5vw] sm:mx-[7vw] lg:ml-[5vw]">
+                <div class="lg:hidden">
+                    <div class="flex justify-center">
+                        {{ partial "utilities/image.html" (dict "src" "images/logo.png" "class" "size-39") }}
+                    </div>
+                    {{ with .title }}
+                        <h2 class="text-primary text-center mb-6 bg-white/20">{{ . | safeHTML }}</h2>
+                    {{ end }}
+                </div>
+
+                <div class="hidden lg:flex justify-center">
+                    {{ partial "utilities/image.html" (dict "src" "images/logo.png" "class" "aspect-square lg:size-35") }}
+
+                {{ with .title }}
+                <h2 class="text-primary place-self-center bg-white/20">{{ . | safeHTML }}</h2>
+                {{ end }}
+                </div>
+
+                <div class="h-1 w-full bg-primary mt-2 mb-6 rounded"></div>
+
+                <div class="pl-6 border-l-4 border-primary mr-4 bg-white/20">
+                    {{ with .text }}
+                    <h5 class="leading-9 paragraph-color">{{ . }}</h5>
+                    {{ end }}
+                </div>
+            </div>
+
+            <!-- IMAGE STACK COLUMN -->
+            <div id="about-us-image" class="relative w-full">
+
+                <!-- Backdrop image (now pushed partially off-screen on lg+) -->
+<!--                {{ partial "utilities/image" (dict "src" "images/about-us-backdrop.png" "class" "absolute z-0 scale-y-80 scale-x-80 h-full translate-x-45 -translate-y-2 opacity-55") }}-->
+                {{ partial "utilities/image" (dict "src" "images/about-us-backdrop.png" "class" "about-us-backdrop") }}
+
+                <!-- Foreground slide-in image (centered over backdrop) -->
+                {{ partial "utilities/image" (dict "src" "images/about-us-top-dressing.png" "class" "about-slide translate-x-2/5 opacity-0") }}
+
+                <!-- Maintains container height -->
+<!--                <div class="aspect-[16/9] md:aspect-[4/3]"></div>-->
+            </div>
+        </div>
+</section>

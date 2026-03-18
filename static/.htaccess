@@ -1,0 +1,44 @@
+# Security Headers
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-XSS-Protection "1; mode=block"
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+# Redirect all HTTP requests to HTTPS
+RewriteEngine On
+# If not already HTTPS (and not coming from a proxy that already terminated TLS)
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+<IfModule mod_headers.c>
+  # 1 year HSTS; remove includeSubDomains if unsure
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  # If you want to aim for preload later, you'd use:
+  # "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# Custom Error Pages
+ErrorDocument 404 /404.html
+
+# Protect sensitive files
+<FilesMatch "(\.env|\.htaccess|composer\.json|composer\.lock)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Cache Control
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+</IfModule>

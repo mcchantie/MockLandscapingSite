@@ -1,0 +1,33 @@
+.success-msg {
+    @apply text-primary text-sm font-semibold;
+}
+.error-msg{
+    @apply text-red-600 text-sm font-semibold;
+}
+/* Make the entire checkbox container more touch-friendly */
+#collapsable-menu .group > div:first-child {
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+#collapsable-menu .group > div:first-child:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure labels are fully clickable */
+label[for="quote"] {
+    padding: 8px 4px;
+    display: block;
+}
+
+/* Make service checkboxes more touch-friendly too */
+#menu-content label {
+    padding: 8px 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+#menu-content label:active {
+    background-color: rgba(0, 0, 0, 0.05);
+}

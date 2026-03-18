@@ -1,0 +1,37 @@
+
+<div id="cookie-notice" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 hidden">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm">
+            We use cookies and Google Analytics to improve your experience.
+            <a href="/privacy-policy" class="underline">Learn more</a>
+        </p>
+        <div class="flex gap-2">
+<!--            <button id="see-privacy-policy" class="bg-primary hover:bg-blue-700 px-4 py-2 rounded text-sm">-->
+<!--                Privacy Policy-->
+<!--            </button>-->
+            <button id="dismiss" class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded text-sm">
+                Dismiss
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const acknowledged = localStorage.getItem('cookie-notice');
+        if (!acknowledged) {
+            document.getElementById('cookie-notice').classList.remove('hidden');
+        }
+
+        // document.getElementById('see-privacy-policy').addEventListener('click', function() {
+        //     localStorage.setItem('cookie-notice', 'acknowledged');
+        //     document.getElementById('cookie-notice').classList.add('hidden');
+        //     window.location = '/privacy-policy';
+        // });
+
+        document.getElementById('dismiss').addEventListener('click', function() {
+            localStorage.setItem('cookie-notice', 'acknowledged');
+            document.getElementById('cookie-notice').classList.add('hidden');
+        });
+    });
+</script>

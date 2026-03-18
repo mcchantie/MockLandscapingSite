@@ -1,0 +1,91 @@
+{{ $minify := ne hugo.Environment "development" }}
+{{ $built := resources.Get "js/services.js" | js.Build (dict "sourceMap" "external" "minify" $minify) }}
+{{ $js := $built | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ if not $minify }}
+{{ with $built.Data.SourceMap }}
+{{ $map := resources.FromString (printf "%s.map" $js.Name) . | fingerprint }}
+<link rel="prefetch" href="{{ $map.RelPermalink }}" as="fetch" crossorigin="anonymous">
+{{ end }}
+{{ end }}
+
+<section id="services" class="md:my-[5vh]">
+    <div class="container bg-white/50 rounded-lg shadow-md mx-auto w-full max-w-10xl px-[5vw] py-[5vw]">
+        {{ with .title }}
+        <h3 class="text-primary text-center mb-8">
+            {{ . }}
+        </h3>
+        {{ end }}
+
+        {{ with .text }}
+            <h6 class="text-center paragraph-color mb-8">
+                {{ . }}
+            </h6>
+        {{ end }}
+
+        {{ if .cards }}
+        <!-- 1 column on mobile, 2 on small/medium, 3 on large+ -->
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {{ range .cards }}
+            <!-- Use aspect ratio instead of vh height -->
+            <div class="group relative overflow-hidden rounded-xl shadow-xl aspect-[3/2]">
+                <!-- Background image -->
+                {{ with .image }}
+                {{ partial "utilities/image" (dict
+                "src" .
+                "class" "absolute inset-0 h-full w-full object-cover transition duration-300 ease-in-out group-hover:brightness-75"
+                ) }}
+                {{ end }}
+
+                <!-- Content wrapper, flex centered -->
+                {{ with .link }}
+                <a href="{{ . }}">
+                {{ end }}
+                    <div class="md:hidden relative z-10 flex h-full flex-col items-center justify-center mx-4 text-center text-white">
+                        {{ with .title }}
+                        <h3 class="service-card-title">
+                            {{ . }}
+                        </h3>
+                        {{ end }}
+
+                        {{ with .text }}
+                        <h5 class="service-card-text">
+                            {{ . }}
+                        </h5>
+                        {{ end }}
+                    </div>
+                </a>
+
+                {{ with .link }}
+                <a href="{{ . }}">
+                {{ end }}
+                    <div class="hidden md:flex relative z-10 h-full flex-col items-center justify-center mx-4 text-center text-white">
+                        {{ with .title }}
+                        <h4 class="service-card-title">
+                            {{ . }}
+                        </h4>
+                        {{ end }}
+
+                        {{ with .text }}
+                        <h6 class="service-card-text">
+                            {{ . }}
+                        </h6>
+                        {{ end }}
+                    </div>
+                </a>
+
+                    <!-- If you add a button back, wrap it in a mt-4 -->
+                    <!--
+                    {{ with .button }}
+                      <div class="mt-4">
+                        {{ partial "components/button/outline" (dict "label" .label "href" .link) }}
+                      </div>
+                    {{ end }}
+                    -->
+
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</section>

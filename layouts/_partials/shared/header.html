@@ -1,0 +1,66 @@
+{{ $minify := ne hugo.Environment "development" }}
+{{ $built := resources.Get "js/dropdown.js" | js.Build (dict "sourceMap" "external" "minify" $minify) }}
+{{ $js := $built | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ if not $minify }}
+{{ with $built.Data.SourceMap }}
+{{ $map := resources.FromString (printf "%s.map" $js.Name) . | fingerprint }}
+<link rel="prefetch" href="{{ $map.RelPermalink }}" as="fetch" crossorigin="anonymous">
+{{ end }}
+{{ end }}
+
+<nav class="gradient-header py-1 border-b-8 border-[var(--color-secondary)]">
+    <div class="max-w-full mx-[5vw] flex flex-row items-center justify-between">
+        <a class="flex items-center" href="{{ .Site.BaseURL }}">
+            {{ partial "utilities/image.html" (dict "src" "images/logo-mini.png" "class" "size-10") }}
+            <h6 class="text-white font-bold px-[1vw] leading-none">{{ .Site.Title }}</h6>
+        </a>
+        <nav class="flex flex-row items-center header-nav">
+            {{ range .Site.Menus.main }}
+            {{ if eq .Name "Services" }}
+            {{ partial "components/button/dropdown" (dict
+            "label" .Name
+            "items" (slice
+            (dict "name" "Aeration" "href" "/services/aeration/")
+            (dict "name" "Drainage Systems" "href" "/services/drainage-systems/")
+            (dict "name" "Grading" "href" "/services/grading/")
+            (dict "name" "Leveling" "href" "/services/leveling/")
+            (dict "name" "Overseeding" "href" "/services/overseeding/")
+            (dict "name" "Top Dressing" "href" "/services/top-dressing/")
+            )
+            ) }}
+            {{ else }}
+            {{ partial "components/button/primary" (dict "label" .Name "href" .URL) }}
+            {{ end }}
+            {{ end }}
+        </nav>
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu">
+            {{ partial "heroicons/bars-4" }}
+        </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            {{ range .Site.Menus.main }}
+            {{ if eq .Name "Services" }}
+            <!-- Mobile Services Section -->
+            <div class="mobile-section">
+                <h3 class="mobile-section-title">{{ .Name }}</h3>
+                <div class="mobile-section-links">
+                    <a href="/services/aeration/" class="mobile-link">Aeration</a>
+                    <a href="/services/drainage-systems/" class="mobile-link">Drainage Systems</a>
+                    <a href="/services/grading/" class="mobile-link">Grading</a>
+                    <a href="/services/leveling/" class="mobile-link">Leveling</a>
+                    <a href="/services/overseeding/" class="mobile-link">Overseeding</a>
+                    <a href="/services/top-dressing/" class="mobile-link">Top Dressing</a>
+                </div>
+            </div>
+            {{ else }}
+            <!-- Other Mobile Links -->
+            <a href="{{ .URL }}" class="mobile-link">{{ .Name }}</a>
+            {{ end }}
+            {{ end }}
+        </div>
+    </div>
+</nav>

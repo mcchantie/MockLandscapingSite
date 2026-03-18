@@ -1,0 +1,58 @@
+enable: true
+
+title: "Contact Us"
+image: "images/services-web-development.png"
+button:
+  label: "Let's talk"
+  link: "#"
+fields:
+  - label: "First Name"
+    name: "first_name"
+    type: "text"
+    placeholder: "John"
+    autocomplete: "given-name"
+    error: "Please enter your first name"
+
+  - label: "Last Name"
+    name: "last_name"
+    type: "text"
+    placeholder: "Doe"
+    autocomplete: "family-name"
+    error: "Please enter your last name"
+
+  - label: "Phone"
+    name: "phone"
+    type: "tel"
+    placeholder: "123-456-7890"
+    autocomplete: "tel"
+    error: "Please give us a phone number"
+
+  - label: "Email"
+    name: "email"
+    type: "email"
+    placeholder: "john.doe@gmail.com"
+    autocomplete: "email"
+    error: "Please give us an email address"
+
+  - label: "Address"
+    name: "address"
+    type: "text"
+    placeholder: "123 Example St"
+    autocomplete: "home"
+    error: "Please provide an address"
+
+  - label: "Zip Code"
+    name: "zip_code"
+    type: "text"
+    placeholder: "77777"
+    autocomplete: "postal-code"
+    error: "Please provide a zip code"
+
+
+services:
+  - "Aeration"
+  - "Drainage Systems"
+  - "Grading"
+  - "Leveling"
+  - "Overseeding"
+  - "Top Dressing"

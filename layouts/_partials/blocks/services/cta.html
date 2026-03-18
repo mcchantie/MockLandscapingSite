@@ -1,0 +1,62 @@
+{{ $minify := ne hugo.Environment "development" }}
+{{ $built := resources.Get "js/fade_in.js" | js.Build (dict "sourceMap" "external" "minify" $minify) }}
+{{ $js := $built | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ if not $minify }}
+{{ with $built.Data.SourceMap }}
+{{ $map := resources.FromString (printf "%s.map" $js.Name) . | fingerprint }}
+<link rel="prefetch" href="{{ $map.RelPermalink }}" as="fetch" crossorigin="anonymous">
+{{ end }}
+{{ end }}
+
+<section
+        class="relative overflow-hidden bg-primary opacity-0 translate-y-8 transition-all duration-700 ease-out"
+        data-animate
+>
+<!-- Background image -->
+    <div class="absolute inset-0">
+        {{ partial "utilities/image" (dict "src" "images/cta-banner.png" "class" "w-full h-full object-cover opacity-30") }}
+        <div class="absolute inset-0 bg-primary/70"></div>
+    </div>
+
+    <div class="relative container mx-auto px-6 py-16 lg:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <!-- Left: Illustration / Image -->
+            <div class="flex justify-center lg:justify-start">
+                <img
+                        src="/images/logo.png"
+                        alt="Texas Top Dressing & Lawn Leveling"
+                        class="max-w-xs lg:max-w-md"
+                />
+            </div>
+
+            <!-- Right: Content -->
+            <div class="text-white">
+                {{ with .title }}
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6 leading-tight">{{ . }}</h2>
+                {{ end }}
+
+                {{ range $index, $element := .text }}
+                    <p class="text-lg text-white/90">{{ $element }}</p>
+                        {{ if lt $index (sub (len $.text) 1) }}  <!-- Only add <br> if not the last item; $index < (len .text) - 1) -->
+                            <div class="w-full h-[2vh]"></div>
+                        {{ end }}
+                {{ end }}
+
+                {{ with .cta }}
+                    <p class="text-lg text-white/90 font-bold mt-[2vh]">{{ . }}</p>
+                {{ end }}
+
+                <div class="flex flex-col sm:flex-row gap-4 mt-10">
+                    <a
+                            href="/#contact-us"
+                            class="inline-flex items-center justify-center rounded-xl border-2 border-accent px-8 py-4 text-lg font-semibold text-white hover:bg-white hover:text-primary transition"
+                    >
+                        Get a Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

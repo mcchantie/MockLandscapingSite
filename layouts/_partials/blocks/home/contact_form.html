@@ -1,0 +1,226 @@
+{{ $minify := ne hugo.Environment "development" }}
+{{ $built := resources.Get "js/contact_form.js" | js.Build (dict "sourceMap" "external" "minify" $minify) }}
+{{ $js := $built | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ if not $minify }}
+{{ with $built.Data.SourceMap }}
+{{ $map := resources.FromString (printf "%s.map" $js.Name) . | fingerprint }}
+<link rel="prefetch" href="{{ $map.RelPermalink }}" as="fetch" crossorigin="anonymous">
+{{ end }}
+{{ end }}
+
+{{ $minify := ne hugo.Environment "development" }}
+{{ $built := resources.Get "js/input_formatter.js" | js.Build (dict "sourceMap" "external" "minify" $minify) }}
+{{ $js := $built | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ if not $minify }}
+{{ with $built.Data.SourceMap }}
+{{ $map := resources.FromString (printf "%s.map" $js.Name) . | fingerprint }}
+<link rel="prefetch" href="{{ $map.RelPermalink }}" as="fetch" crossorigin="anonymous">
+{{ end }}
+{{ end }}
+
+<section id="contact-us">
+    <div class="relative z-10">
+        {{ with .title }}
+        <h2 class="text-white mb-4 text-center font-outline-primary">{{ . }}</h2>
+        {{ end }}
+
+        <!-- Center the form and give it a card-like look -->
+        <div class="flex justify-center">
+            <form
+                    action="/api/send_email.php"
+                    method="post"
+                    enctype="multipart/form-data"
+                    class="vignette text-xl"
+            >
+                <!-- Honeypot field for spam prevention -->
+                <input type="text" name="website" value="" style="display:none;">
+
+                <!-- 2-column grid for the main fields, centered in their cells -->
+                <div class="w-full max-w-xs md:max-w-sm xl:max-w-md mx-auto">
+                <div class="grid gap-x-8 gap-y-6 mb-10 xl:grid-cols-2 pt-[1vw] place-items-center">
+                    {{ range .fields }}
+                    <ul class="w-full">
+                        <li class="leading-4">
+                            <label for="{{ .name }}" class="font-bold">{{ .label }}</label>
+                            <div class="error-msg opacity-0" id="{{ .name }}-error"> {{ .error }}</div>
+                        </li>
+                        <li>
+                            <input
+                                    class="w-full border border-black rounded-lg p-2 text-base"
+                                    type="{{ .type }}"
+                                    id="{{ .name }}"
+                                    name="{{ .name }}"
+                                    inputmode="{{ .inputmode }}"
+                                    autocomplete="{{ .autocomplete }}"
+                                    placeholder="{{ .placeholder }}"
+                                    title="{{ .title }}"
+                                    maxlength="{{ .maxlength }}"
+                            >
+                        </li>
+                    </ul>
+                    {{ end }}
+                </div>
+
+                <p class="font-bold mb-3">How should we contact you?</p>
+                <div class="mb-6 flex items-center gap-6">
+                    <label for="prefer_email" class="flex items-center gap-2 cursor-pointer">
+                        <input
+                                type="radio"
+                                id="prefer_email"
+                                name="contact_preference"
+                                value="email"
+                                class="h-5 w-5"
+                                checked />  <!-- Default selection -->
+                        <span>Email</span>
+                    </label>
+
+                    <label for="prefer_phone" class="flex items-center gap-2 cursor-pointer">
+                        <input
+                                type="radio"
+                                id="prefer_phone"
+                                name="contact_preference"
+                                value="phone"
+                                class="h-5 w-5"
+                        >
+                        <span>Phone</span>
+                    </label>
+                </div>
+
+                <div class="mb-5 flex flex-col">
+                    <label for="message" class="font-bold">Leave a message:</label>
+                    <textarea
+                            id="message"
+                            name="message"
+                            rows="5"
+                            placeholder="How can we help?"
+                            class="mt-2 border-2 rounded-md p-3 text-base"
+                    ></textarea>
+                    <div class="error-msg opacity-0" id="message-error">Please leave us a message</div>
+                </div>
+                </div>
+
+                <!-- Smooth collapsible quote menu -->
+                <div id="collapsable-menu" class="border-t pt-8">
+                    <div class="group flex flex-col items-center">
+
+                        <!-- Checkbox + label row -->
+                        <div id="quote-box" class="flex items-center gap-2 cursor-pointer select-none">
+                            <input
+                                    id="quote"
+                                    name="quote"
+                                    type="checkbox"
+                                    class="h-5 w-5"
+                            >
+                            <label for="quote" class="font-bold cursor-pointer">
+                                Asking for a quote?
+                            </label>
+                        </div>
+
+                        <!-- MENU revealed (expands; pushes arrow down) -->
+                        <div
+                                id="menu-content"
+                                class="mt-4 w-full max-h-0 overflow-hidden opacity-0
+       transition-[max-height,opacity] duration-800 ease-out
+       group-has-[:checked]:max-h-[1000px]
+       group-has-[:checked]:opacity-100"
+                        >
+                            <div class="flex flex-col items-center align-center mb-6 font-medium">
+                                Service(s) Needed
+                                <div class="error-msg opacity-0" id="services-error">Please select a service</div>
+                            </div>
+
+                            <div id="services-checklist" class="grid gap-2 w-11/12 mx-auto grid-cols-[repeat(auto-fit,minmax(10rem,1fr))]">
+                                {{ range .services }}
+                                <div>
+                                    <label class="inline-flex items-center gap-2 cursor-pointer">
+                                        <input
+                                                type="checkbox"
+                                                id="{{ . }}"
+                                                name="services[]"
+                                                value="{{ . }}"
+                                        >
+                                        <span>{{ . }}</span>
+                                    </label>
+                                </div>
+                                {{ end }}
+                            </div>
+
+                            <!-- Upload attachments block -->
+                            <div class="mt-10 rounded-lg border border-dashed border-gray-400 bg-gray-50 px-4 pt-6 pb-4">
+                                <p class="text-center mb-2 text-base font-medium">
+                                    Attach photos or a video of your yard to get a faster quote!
+                                </p>
+                                <p class="text-center text-sm text-gray-600">
+                                    Hold the Ctrl key to upload multiple files (Command on Mac OS).
+                                </p>
+                                <p class="text-center mb-4 text-sm text-gray-600">
+                                    Max upload size is 20MB. Files must be 10MB or smaller.
+                                </p>
+
+                                <label
+                                        for="attachments"
+                                        class="mb-2 block text-sm font-semibold text-gray-800"
+                                >
+                                    Upload Attachments
+                                </label>
+
+                                <input
+                                        id="attachments"
+                                        name="attachments[]"
+                                        type="file"
+                                        multiple
+                                        accept="image/*,video/*"
+                                        class="block w-full text-sm paragraph-color
+           file:mr-4 file:rounded-md file:border-0
+           file:bg-primary file:px-4 file:py-2
+           file:text-sm file:font-semibold file:text-white
+           hover:file:bg-primary/90"
+                                >
+
+                                <p class="mt-2 text-xs text-gray-500">
+                                    Tip: Clear, well-lit photos help us give you a more accurate quote.
+                                </p>
+                                <p class="error-msg opacity-0" id="attachments-error">
+                                    Files exceed 20MB.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- LINE + ARROW (now sits between upload section and submit) -->
+                        <div id="arrow" class="mt-3 flex justify-center w-full overflow-visible">
+                            <div
+                                    class="relative w-56 h-6
+         transition-transform duration-800 ease-out"
+                            >
+                                <!-- line -->
+                                <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px bg-gray-400"></div>
+
+                                <!-- arrow -->
+                                <div
+                                        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+           transition-transform duration-400 ease-out
+           group-has-[:checked]:rotate-180"
+                                >
+                                    {{ partial "icons/drop_down_arrow.html" }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Submit button centered under everything -->
+                    <div class="mt-3 flex flex-col justify-center items-center">
+                        <div class="success-msg opacity-0" id="submit-message">Thank you for contacting us! We will get back to you shortly.</div>
+                        <input
+                                class="font-bold border border-black rounded-lg px-8 py-3 cursor-pointer hover:bg-gray-400 hover:text-white transition"
+                                type="submit"
+                                id="submit"
+                                name="submit"
+                                value="Talk to a lawn leveling expert!"
+                        >
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

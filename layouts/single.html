@@ -1,0 +1,42 @@
+{{ define "main" }}
+    <section>
+        <div class="content-center overflow-hidden h-[25vh] md:h-108 lg:h-145 xl:h-150">
+            {{ with .Params.heroImage }}
+                {{ partial "utilities/image.html" (dict "src" . "class" "inset-0 object-[50%_50%] w-full h-full object-cover") }}
+            {{ end }}
+        </div>
+        <div class="container mx-auto py-10 px-4">
+            {{ with .Title }}
+            <h2 class="text-primary mb-8 text-center font-bold">{{ . }}</h2>
+            {{ end }}
+            {{ with .Params.subtitle }}
+            <h4 class="text-primary mb-16 text-center font-bold">{{ . }}</h4>
+            {{ end }}
+            <div class="prose prose-lg max-w-none">
+                {{ .Content }}
+            </div>
+<!--            <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 items-center">-->
+<!--                &lt;!&ndash; Left: Content &ndash;&gt;-->
+<!--                <div class="prose prose-lg max-w-none">-->
+<!--                    {{ .Content }}-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Right: Blog image &ndash;&gt;-->
+<!--                {{ with .Params.blogImage }}-->
+<!--                <div class="place-item-center">-->
+<!--                    <div class="relative w-full overflow-hidden rounded-2xl shadow-sm aspect-[3/5]">-->
+<!--                        {{ partial "utilities/image.html" (dict "src" . "class" "absolute inset-0 w-full h-full object-contain") }}-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                {{ end }}-->
+<!--            </div>-->
+        </div>
+    </section>
+<!--Dynamic CTA loading based on current page filename-->
+{{ $ctaFileName := printf "%s-cta" .File.BaseFileName }}
+{{ $ctaData := index .Site.Data.services $ctaFileName }}
+{{ with $ctaData }}
+{{ partial "blocks/services/cta.html" . }}
+{{ end }}
+{{ with .Site.Data.home.services }}{{ if .enable }}{{ partial "blocks/services/services.html" . }}{{ end }}{{ end }}
+{{ end }}

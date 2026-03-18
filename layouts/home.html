@@ -1,0 +1,6 @@
+{{ define "main" }}
+  {{ with .Site.Data.home.hero_with_video }}{{ if .enable }}{{ partial "blocks/home/hero_with_video.html" . }}{{ end }}{{ end }}
+  {{ with .Site.Data.home.about_us }}{{ if .enable }}{{ partial "blocks/home/about_us.html" . }}{{ end }}{{ end }}
+  {{ with .Site.Data.home.services }}{{ if .enable }}{{ partial "blocks/home/services.html" . }}{{ end }}{{ end }}
+  {{ partial "blocks/home/lead_capture.html" . }}
+{{ end }}

@@ -1,0 +1,49 @@
+title: "Texas Top Dressing & Lawn Leveling"
+images: 
+  - "images/hero-image.png"
+
+logo: "images/logo-mini.png"
+
+colors:
+  primary: "#00007B"
+  secondary: "#C80000"
+  tertiary: "#f7ab08"
+
+favicons:
+  themeColor: "#FFFFFF"
+  backgroundColor: "#FFFFFF"
+  faviconColor: "#000000"
+
+social:
+  dribbble: "#"
+  instagram: "https://www.instagram.com/texas_topdressing/"
+  facebook: "https://www.facebook.com/profile.php?id=61576366725519"
+  twitter: "#"
+
+locations:
+  - "Baytown"
+  - "Cinco Ranch"
+  - "Cypress"
+  - "Houston"
+  - "Humble"
+  - "Katy"
+  - "Manvel"
+  - "Pasadena"
+  - "Pearland"
+  - "Prairie View"
+  - "Rosenberg"
+  - "Sealy"
+  - "Spring"
+  - "Sugar Land"
+  - "Tomball"
+  - "Wallis"
+
+email:
+  - "texastopdressing@gmail.com"
+
+phone:
+  - "832.304.3633"
+
+copyright: "© 2026 Texas Top Dressing & Lawn Leveling All Rights Reserved"
+
+googleAnalytics: "G-6BY14V04D6"

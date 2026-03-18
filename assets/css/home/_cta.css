@@ -1,0 +1,10 @@
+.cropped-video {
+    /* This creates a rectangular crop, cutting 33% from the top and bottom */
+    clip-path: polygon(1% 0%, 99% 0%, 99% 100%, 1% 100%);
+
+    /* Example for a circular crop */
+    /* clip-path: circle(50% at 50% 50%); */
+}
+.cta-video {
+    transform: translateY(calc(var(--scroll) * 0.2));
+}

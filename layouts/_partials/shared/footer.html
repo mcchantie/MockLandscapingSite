@@ -1,0 +1,114 @@
+<footer id="footer" class="gradient-footer text-white border-t-5 border-secondary">
+  <div class="container mx-auto px-4">
+    <div class="mb-[1vh] grid gap-8 xl:grid-cols-3">
+      <div class="flex flex-col items-center xl:mt-[0vh] xl:mr-[5vw]">
+        <a class="flex items-center" href="{{ site.BaseURL }}">
+          <span class="text-xl font-semibold uppercase xl:text-3xl">
+              {{ partial "utilities/image.html" (dict "src" "images/logo.png" "class" "size-40 xl:size-55") }}
+          </span>
+        </a>
+        {{ with .Site.Params.social }}
+          <ul class="flex gap-10">
+            {{ with .instagram }}
+              <li class="flex size-8 items-center justify-center rounded-full">
+                <a class="" href="{{ . }}" aria-label="Instagram">{{ partial "icons/instagram.html" }}</a>
+              </li>
+            {{ end }}
+            {{ with .facebook }}
+              <li class="flex size-8 items-center justify-center rounded-full">
+                <a class="" href="{{ . }}" aria-label="Facebook">{{ partial "icons/facebook.html" }}</a>
+              </li>
+            {{ end }}
+          </ul>
+        {{ end }}
+      </div>
+        <div class="mt-[2vh]">
+            <h2 class="mb-2 text-center text-lg font-bold mb-[3vh]">Service Areas</h2>
+            <ul class="mx-auto grid grid-cols-[auto_1fr_auto_1fr] sm:grid-cols-[auto_1fr_auto_1fr_auto_1fr_auto_1fr] gap-x-4 gap-y-3 text-md items-start w-fit">
+                {{ range .Site.Params.locations }}
+                <li class="flex justify-center">
+                    <span>{{ partial "icons/geo-alt.html" }}</span>
+                </li>
+                <li>
+                    <span class="text-left whitespace-nowrap">{{ . }}</span>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+      <div class="mt-[2vh] xl:ml-[5vw] mb-[3vh] xl:mb-[0vh]">
+        <h2 class="mb-2 text-center text-lg font-bold">Contact Us</h2>
+        <ul class="flex flex-col gap-1 text-md font-bold xl:mt-[2vh]">
+          {{ range .Site.Params.email }}
+            <a href="mailto:{{ . }}" class="text-center hover:text-gray-300">{{ . }}</a>
+          {{ end }}
+        {{ range .Site.Params.phone }}
+            <li class="text-center">
+                <a href="tel:{{ . }}" class="hover:text-gray-300">{{ . }}</a>
+            </li>
+        {{ end }}
+        </ul>
+      </div>
+    </div>
+    <div class="text-center text-sm hidden xl:block">
+      <div class="">
+<!--        {{ with .Site.Params.copyright }}-->
+<!--          <p class="">{{ . }}</p>-->
+<!--        {{ end }}-->
+          <div class="mb-[2vh] grid gap-8 xl:grid-cols-3">
+              <div></div>
+              <div>
+                  {{ with .Site.Params.copyright }}
+                  <p class="">{{ . }}</p>
+                  {{ end }}
+                  <p class="mt-5">
+                      <a href="/privacy-policy" class="text-white hover:text-gray-300 underline">Privacy Policy</a>
+                  </p>
+              </div>
+              <div class="xl:ml-[5vw] flex flex-col items-center justify-center">
+                  <div class="">{{ partial "utilities/image.html" (dict "src" "images/local_roots.png" "class" "size-10") }}</div>
+                  <p class="text-md">
+                      Made by <a href="https://localrootsweb.com" target="_blank" class="text-green-200 hover:text-gray-300">Local Roots Web Design</a>
+                  </p>
+              </div>
+          </div>
+      </div>
+    </div>
+      <div class="text-xs hidden xl:hidden sm:flex sm:flex-row mb-[2vh]">
+          <div class="mr-auto text-left ml-[5vw]">
+<!--              Typed out the copyright to put "All Rights Reserved" on a new line-->
+              <p class="">© 2026 Texas Top Dressing & Lawn Leveling </p>
+              <p class="text-center">All Rights Reserved</p>
+              <div>
+                  <p class="mt-2 text-center">
+                      <a href="/privacy-policy" class="text-white hover:text-gray-300 underline">Privacy Policy</a>
+                  </p>
+              </div>
+          </div>
+          <div class="ml-auto text-right mr-[5vw] flex flex-col items-center justify-center">
+              <div>{{ partial "utilities/image.html" (dict "src" "images/local_roots.png" "class" "size-10") }}</div>
+              <p class="xl:ml-[5vw] text-sm">
+                  Made by <a href="https://localrootsweb.com" target="_blank" class="text-green-200 hover:text-gray-300">Local Roots Web Design</a>
+              </p>
+          </div>
+      </div>
+<!--      Cell Phone View Below -->
+      <div class="text-center text-xs sm:hidden grid grid-cols-2 mb-[2vh]">
+          <div class="">
+              {{ with .Site.Params.copyright }}
+              <p class="">{{ . }}</p>
+              {{ end }}
+              <div>
+                  <p class="mt-2">
+                      <a href="/privacy-policy" class="text-white hover:text-gray-300 underline">Privacy Policy</a>
+                  </p>
+              </div>
+          </div>
+          <div class="flex flex-col items-center justify-center">
+              <div>{{ partial "utilities/image.html" (dict "src" "images/local_roots.png" "class" "size-10") }}</div>
+              <p class="">
+                  Made by <a href="https://localrootsweb.com" target="_blank" class="text-green-200 hover:text-gray-300">Local Roots Web Design</a>
+              </p>
+          </div>
+      </div>
+  </div>
+</footer>

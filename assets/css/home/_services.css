@@ -1,0 +1,76 @@
+.service-card-title {
+    position: absolute;
+    text-shadow:
+            -1px -1px 0 #000099,
+            1px -1px 0 #000099,
+            -1px 1px 0 #000099,
+            1px 1px 0 #000099;
+    transition: transform 200ms ease-in-out;
+}
+
+.service-card-text {
+    position: absolute;
+    line-height: 1;
+    transform: translateY(50vw);
+    transition: transform 200ms ease-in-out;
+
+    @media (min-width: 768px){
+        transform: translateY(22vw);
+    }
+}
+
+/* Only apply hover styles on devices that support true hover (desktop) */
+@media (hover: hover) and (pointer: fine) {
+    .group:hover .service-card-text {
+        transform: translateY(0);
+    }
+
+    .group:hover .service-card-title {
+        transform: translateY(-18vw);
+    }
+
+    .group:hover img {
+        filter: brightness(0.75);
+        transition: filter 200ms ease-in-out;
+    }
+
+    .group:hover {
+        transform: scale(1.02);
+        transition: transform 200ms ease-in-out;
+    }
+}
+
+/* Click/touch styles - work on all devices */
+.group.is-hovered .service-card-text {
+    transform: translateY(0);
+}
+
+.group.is-hovered .service-card-title {
+    transform: translateY(-18vw);
+
+    @media (max-width: 639px) {
+        transform: translateY(-35vw);
+    }
+}
+
+.group.is-hovered {
+    transform: scale(1.02);
+    transition: transform 200ms ease-in-out;
+}
+
+.group.is-hovered img {
+    filter: brightness(0.75);
+    transition: filter 200ms ease-in-out;
+}
+
+/* Default state for images */
+.group img {
+    filter: brightness(1);
+    transition: filter 200ms ease-in-out;
+}
+
+/* Default state for scaling */
+.group {
+    transform: scale(1);
+    transition: transform 200ms ease-in-out;
+}

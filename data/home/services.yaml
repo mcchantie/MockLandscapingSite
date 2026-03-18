@@ -1,0 +1,34 @@
+enable: true
+
+title: "Services Offered"
+text: "From soil correction to full yard transformation, we offer solutions that bring your lawn back to life."
+cards:
+  - image: "images/aeration.jpg"
+    title: "Aeration"
+    text: "Relieve soil compaction and open your lawn’s root system to more air, water, and nutrients. Aeration jump-starts stronger, healthier growth and builds a lawn that can stand up to Texas heat and heavy use."
+    link: "/services/aeration/"
+
+  - image: "images/drainage_systems.jpg"
+    title: "Drainage Systems"
+    text: "Stop standing water and protect your yard with a custom drainage system built for Houston’s unpredictable rains. Our solutions prevent flooding, protect your foundation, and keep your lawn dry, stable, and usable year-round."
+    link: "/services/drainage-systems/"
+
+  - image: "images/grading.jpg"
+    title: "Grading"
+    text: "Reshape your property with precision grading that directs water away from your home and eliminates problem areas. Proper grading improves safety, prevents erosion, and sets the foundation for a smooth, picture-perfect yard."
+    link: "/services/grading/"
+
+  - image: "images/leveling.jpg"
+    title: "Leveling"
+    text: "Fix bumps, dips, and low spots with professional lawn leveling that creates a flat, polished surface. Leveling improves curb appeal, enhances mower performance, and leaves your yard looking clean and professionally finished."
+    link: "/services/leveling/"
+
+  - image: "images/overseeding.jpg"
+    title: "Overseeding"
+    text: "Revitalize thin, patchy, or worn-out grass with premium seed tailored for Texas lawns. Overseeding boosts color, density, and durability—giving your yard a fresh, full, vibrant look without starting from scratch."
+    link: "/services/overseeding/"
+
+  - image: "images/top_dressing.jpg"
+    title: "Top Dressing"
+    text: "Transform your lawn with a nutrient-rich layer of sand or compost that improves soil quality and strengthens roots. Top dressing smooths minor imperfections and helps your grass stay green, lush, and healthy through every season."
+    link: "/services/top-dressing/"
