@@ -183,6 +183,8 @@
 }
 
 .mobile-menu-open {
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
     background-color: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(10px);
 }

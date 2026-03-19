@@ -34,14 +34,14 @@
                 {{ end }}
 
                 {{ range $index, $element := .text }}
-                    <p class="text-lg text-white/90">{{ $element }}</p>
+                    <p class="p-h6 text-white/90">{{ $element }}</p>
                         {{ if lt $index (sub (len $.text) 1) }}  <!-- Only add <br> if not the last item; $index < (len .text) - 1) -->
                             <div class="w-full h-[2vh]"></div>
                         {{ end }}
                 {{ end }}
 
                 {{ with .cta }}
-                    <p class="text-lg text-white/90 font-bold mt-[2vh]">{{ . }}</p>
+                    <p class="p-h6 text-white/90 font-bold mt-[2vh]">{{ . }}</p>
                 {{ end }}
 
                 <div class="flex flex-col sm:flex-row gap-4 mt-10">

@@ -1,8 +1,19 @@
 enable: true
 
-title:
-  - "Veteran-Owned."
-  - "Texas Proud."
-  - "Quality You Can See."
+title: "Professional Landscaping Services"
 
-video: "images/hero.png"
+heading_1: "Beautiful Lawns."
+heading_2: "Clean Landscapes."
+heading_3: "Curb Appeal That Lasts."
+
+text: "From routine lawn care to landscape enhancements, we help Texas homeowners keep their properties healthy, polished, and easy to enjoy year-round."
+
+image: "images/hero.png"
+
+quote_button:
+  label: "Get a Free Quote"
+  link: "/#contact-us"
+
+services_button:
+  label: "View Services"
+  link: "/#services"

@@ -1,44 +1,47 @@
 <section id="hero">
-    <div class="content-center relative overflow-hidden z-0 h-[55vh] md:h-108 lg:h-145 xl:h-195 bg-black">
+    <div class="content-center relative overflow-hidden z-0 h-[65vh] md:h-108 lg:h-145 xl:h-195 bg-black">
         <div class="absolute inset-0 bg-black/35 z-0"></div>
 
         <div class="absolute z-10 top-1/2 -translate-y-1/2 left-[6%] max-w-3xl px-4">
-            <p class="text-white uppercase tracking-[0.2em] mb-3 text-sm md:text-base">
-                Professional Landscaping Services
+            <p class="text-white uppercase tracking-[0.2em] mb-3 p-h6">
+                {{ with .title }}{{ . }}{{ end }}
             </p>
 
             <h1 class="text-white mb-3">
-                Beautiful Lawns.
+                {{ with .heading_1 }}{{ . }}{{ end }}
             </h1>
             <h1 class="text-primary font-outline-white mb-3">
-                Clean Landscapes.
+                {{ with .heading_2 }}{{ . }}{{ end }}
             </h1>
             <h1 class="text-secondary mb-5">
-                Curb Appeal That Lasts.
+                {{ with .heading_3 }}{{ . }}{{ end }}
             </h1>
 
-            <p class="text-white text-base md:text-lg max-w-2xl mb-6">
-                From routine lawn care to landscape enhancements, we help Texas homeowners
-                keep their properties healthy, polished, and easy to enjoy year-round.
+            <p class="text-white p-h5 max-w-2xl mb-6">
+                {{ with .text }}{{ . }}{{ end }}
             </p>
 
             <div class="flex flex-col sm:flex-row gap-3">
+                {{ with .quote_button }}
                 <a
-                        href="#quote"
+                        href="{{.link}}"
                         class="inline-flex items-center justify-center bg-primary text-white px-6 py-3 rounded-md font-semibold hover:opacity-90 transition"
                 >
-                    Get a Free Quote
+                    {{ .label }}
                 </a>
+                {{ end }}
+                {{ with .services_button }}
                 <a
-                        href="#services"
+                        href="{{.link}}"
                         class="inline-flex items-center justify-center bg-white/10 text-white border border-white/40 px-6 py-3 rounded-md font-semibold hover:bg-white/20 transition"
                 >
-                    View Services
+                    {{ .label }}
                 </a>
+                {{ end }}
             </div>
         </div>
 
-        {{ with .video }}
+        {{ with .image }}
         {{ partial "utilities/image.html" (dict "src" . "class" "absolute inset-0 z-[-1] object-[50%_50%] w-full h-full object-cover") }}
         {{ end }}
     </div>
