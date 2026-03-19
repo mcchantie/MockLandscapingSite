@@ -20,17 +20,18 @@
             {{ if eq .Name "Services" }}
             {{ partial "components/button/dropdown" (dict
             "label" .Name
+            "href" .URL
             "items" (slice
-            (dict "name" "Aeration" "href" "/services/aeration/")
-            (dict "name" "Drainage Systems" "href" "/services/drainage-systems/")
-            (dict "name" "Grading" "href" "/services/grading/")
-            (dict "name" "Leveling" "href" "/services/leveling/")
-            (dict "name" "Overseeding" "href" "/services/overseeding/")
-            (dict "name" "Top Dressing" "href" "/services/top-dressing/")
+            (dict "name" "Flower Bed Maintenance" "href" "/services/flower-bed-maintenance/")
+            (dict "name" "Landscape Enhancements" "href" "/services/landscape-enhancements/")
+            (dict "name" "Lawn Maintenance" "href" "/services/lawn-maintenance/")
+            (dict "name" "Mulch Installation" "href" "/services/mulch-installation/")
+            (dict "name" "Seasonal Cleanups" "href" "/services/seasonal-cleanups/")
+            (dict "name" "Shrub & Hedge Trimming" "href" "/services/shrub-hedge-trimming/")
             )
             ) }}
             {{ else }}
-            {{ partial "components/button/primary" (dict "label" .Name "href" .URL) }}
+            <a href="{{ .URL }}">{{ .Name }}</a>
             {{ end }}
             {{ end }}
         </nav>
@@ -48,12 +49,12 @@
             <div class="mobile-section">
                 <h3 class="mobile-section-title">{{ .Name }}</h3>
                 <div class="mobile-section-links">
-                    <a href="/services/aeration/" class="mobile-link">Aeration</a>
-                    <a href="/services/drainage-systems/" class="mobile-link">Drainage Systems</a>
-                    <a href="/services/grading/" class="mobile-link">Grading</a>
-                    <a href="/services/leveling/" class="mobile-link">Leveling</a>
-                    <a href="/services/overseeding/" class="mobile-link">Overseeding</a>
-                    <a href="/services/top-dressing/" class="mobile-link">Top Dressing</a>
+                    <a href="/services/flower-bed-maintenance/" class="mobile-link">Flower Bed Maintenance</a>
+                    <a href="/services/landscape-enhancements/" class="mobile-link">Landscape Enhancements</a>
+                    <a href="/services/lawn-maintenance/" class="mobile-link">Lawn Maintenance</a>
+                    <a href="/services/mulch-installation/" class="mobile-link">Mulch Installation</a>
+                    <a href="/services/seasonal-cleanups/" class="mobile-link">Seasonal Cleanups</a>
+                    <a href="/services/shrub-hedge-trimming/" class="mobile-link">Shrub & Hedge Trimming</a>
                 </div>
             </div>
             {{ else }}

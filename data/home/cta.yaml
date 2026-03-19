@@ -1,12 +1,12 @@
 enable: true
 
-title: "Ready to level up your lawn?"
+title: "Bring out the best in your landscape"
 text:
-  - "We use professional-grade commercial equipment to deliver precise lawn leveling, top dressing, and soil restoration — with results that speak for themselves."
-  - "As a Veteran-Owned service, we bring integrity, professionalism, and unmatched attention to detail to every project."
-  - "Your yard deserves expert care. We’ll walk you through the process and recommend the right solution for your home."
+  - "Our services are designed to enhance the structure, appearance, and long-term health of your outdoor space."
+  - "With attention to detail and a commitment to quality, we create clean, polished results that elevate your property."
+  - "We’ll assess your space and recommend a solution tailored to your goals."
 
-video: "videos/CTAReel.mp4"
+image: "images/cta.jpg"
 #button:
 #  label: "Let's talk"
 #  link: "#"

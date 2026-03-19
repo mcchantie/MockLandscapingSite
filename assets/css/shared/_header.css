@@ -1,4 +1,10 @@
 /* Header Styles */
+/* Green, landscaping‑style header bar */
+.gradient-header {
+    background: linear-gradient(90deg, #052e16, #166534, #16a34a);
+    color: #f9fafb;
+}
+
 .header-container {
     display: flex;
     align-items: center;
@@ -27,6 +33,28 @@
         display: flex;
         align-items: center;
     }
+}
+
+/* Desktop nav links (primary menu) */
+.header-nav a, .header-nav button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.35rem;
+    margin-left: 0.5rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    background-color: transparent;
+    border: 1px solid transparent;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease,
+    box-shadow 200ms ease, transform 150ms ease;
+}
+
+.header-nav a:hover, .header-nav button:hover {
+
+    border-color: rgba(236, 253, 245, 0.4);
+    box-shadow: 0 10px 25px rgba(15, 118, 110, 0.25);
+    transform: translateY(-1px);
 }
 
 .nav-link {
@@ -135,7 +163,7 @@
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    color: var(--color-white);
+    color: #ecfdf3;
 
     @media (min-width: 1024px) {
         display: none;
@@ -155,10 +183,12 @@
 }
 
 .mobile-menu-open {
-    max-height: 500px;
+    background-color: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(10px);
 }
 
 .mobile-menu-content {
+    background-color: #ecfdf3;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -170,7 +200,7 @@
 }
 
 .mobile-section-title {
-    color: var(--color-white);
+    color: #064e3b;
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
@@ -184,15 +214,16 @@
 }
 
 .mobile-link {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 0;
-    font-size: 1rem;
-    transition: color 0.2s ease;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: #064e3b;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    transition: background-color 150ms ease, color 150ms ease;
 }
 
 .mobile-link:hover {
-    color: var(--color-secondary);
+    background-color: #bbf7d0;
+    color: #052e16;
 }
 
 /* Responsive adjustments */
@@ -218,3 +249,4 @@
         transform: translateX(-50%) translateY(0);
     }
 }
+

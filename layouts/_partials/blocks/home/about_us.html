@@ -10,17 +10,17 @@
 {{ end }}
 
 <section id="about-us" class="overflow-x-hidden bg-neutral-100 py-16 md:py-24">
-    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="mx-auto max-w-9/10 px-6 lg:px-10">
 
         <!-- Centered Header -->
-        <div class="mx-auto mb-14 max-w-5xl text-center">
+        <div class="mx-auto mb-14 text-center">
             {{ with .title }}
-            <h2 class="text-primary mb-4 max-w-4xl mx-auto">
+            <h2 class="text-primary mb-4 mx-auto">
                 {{ . | safeHTML }}
             </h2>
             {{ end }}
 
-            <div class="mx-auto h-1 w-40 rounded bg-primary/80"></div>
+            <div class="mx-auto h-1 w-[26vw] rounded bg-primary/80"></div>
         </div>
 
         <!-- Content Row -->
@@ -32,7 +32,7 @@
                     <div class="absolute inset-0 translate-x-4 translate-y-4 rounded-sm bg-primary/15"></div>
 
                     <div class="relative overflow-hidden border-[3px] border-primary/80 bg-white shadow-lg">
-                        {{ partial "utilities/image.html" (dict "src" "images/about-us-top-dressing.png" "class" "w-full h-full object-cover aspect-[16/10]") }}
+                        {{ partial "utilities/image.html" (dict "src" "images/greenline-team.png" "class" "w-full h-full object-cover aspect-[16/10]") }}
                     </div>
                 </div>
             </div>

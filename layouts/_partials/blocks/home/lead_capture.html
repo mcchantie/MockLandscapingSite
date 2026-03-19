@@ -1,12 +1,7 @@
 <section id="lead_capture" class="mt-20 bg-neutral-100">
     <div class="relative overflow-hidden py-16 md:py-24">
-        <!-- Optional soft backdrop -->
-        <div class="absolute inset-x-0 top-0 h-32 opacity-10 pointer-events-none">
-            {{ partial "utilities/image" (dict "src" "images/about-us-backdrop.png" "class" "w-full h-full object-cover") }}
-        </div>
-
-        {{ with .Site.Data.home.cta.video }}
-        {{ partial "utilities/stylable_video.html" (dict "src" . "class" "absolute inset-0 z-0 h-full w-full object-cover opacity-10") }}
+        {{ with .Site.Data.home.cta.image}}
+        {{ partial "utilities/image.html" (dict "src" . "class" "absolute inset-0 z-0 h-full w-full object-cover opacity-10") }}
         {{ end }}
 
         <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">

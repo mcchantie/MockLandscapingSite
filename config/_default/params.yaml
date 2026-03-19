@@ -5,9 +5,8 @@ images:
 logo: "images/logo-mini.png"
 
 colors:
-  primary: "#00007B"
-  secondary: "#C80000"
-  tertiary: "#f7ab08"
+  primary: "#166534"
+  secondary: "#22c55e"
 
 favicons:
   themeColor: "#FFFFFF"
@@ -16,8 +15,8 @@ favicons:
 
 social:
   dribbble: "#"
-  instagram: "https://www.instagram.com/texas_topdressing/"
-  facebook: "https://www.facebook.com/profile.php?id=61576366725519"
+  instagram: "https://www.instagram.com/localrootsweb?igsh=b2Z0bXE4dzJ0eWNh&utm_source=qr"
+  facebook: "https://www.facebook.com/profile.php?id=61586705626333"
   twitter: "#"
 
 locations:
@@ -39,11 +38,11 @@ locations:
   - "Wallis"
 
 email:
-  - "texastopdressing@gmail.com"
+  - "greenline@example.com"
 
 phone:
-  - "832.304.3633"
+  - "555.123.4567"
 
 copyright: "© 2026 GreenLine Landscaping All Rights Reserved"
 
-googleAnalytics: "G-6BY14V04D6"
+googleAnalytics: "G-XXXXXXXX"

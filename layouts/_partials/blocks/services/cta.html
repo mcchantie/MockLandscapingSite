@@ -24,11 +24,7 @@
 
             <!-- Left: Illustration / Image -->
             <div class="flex justify-center lg:justify-start">
-                <img
-                        src="/images/logo.png"
-                        alt="GreenLine Landscaping"
-                        class="max-w-xs lg:max-w-md"
-                />
+                {{ partial "utilities/image" (dict "src" "images/logo.png" "class" "max-w-xs lg:max-w-md" "alt" "GreenLine Landscaping") }}
             </div>
 
             <!-- Right: Content -->

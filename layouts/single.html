@@ -1,9 +1,39 @@
 {{ define "main" }}
     <section>
-        <div class="content-center overflow-hidden h-[25vh] md:h-108 lg:h-145 xl:h-150">
-            {{ with .Params.heroImage }}
-                {{ partial "utilities/image.html" (dict "src" . "class" "inset-0 object-[50%_50%] w-full h-full object-cover") }}
-            {{ end }}
+        <div class="overflow-hidden h-[30vh] md:h-108 lg:h-145 xl:h-150">
+            <div class="grid grid-cols-2 h-full">
+
+                <!-- BEFORE IMAGE -->
+                {{ with .Params.beforeImage }}
+                <div class="relative">
+                    {{ partial "utilities/image.html" (dict
+                    "src" .
+                    "class" "w-full h-full object-cover"
+                    ) }}
+
+                    <!-- Label -->
+                    <div class="absolute top-3 left-3 bg-black/70 text-white text-xs md:text-sm px-3 py-1 rounded">
+                        Before
+                    </div>
+                </div>
+                {{ end }}
+
+                <!-- AFTER IMAGE -->
+                {{ with .Params.afterImage }}
+                <div class="relative">
+                    {{ partial "utilities/image.html" (dict
+                    "src" .
+                    "class" "w-full h-full object-cover"
+                    ) }}
+
+                    <!-- Label -->
+                    <div class="absolute top-3 right-3 bg-primary text-white text-xs md:text-sm px-3 py-1 rounded">
+                        After
+                    </div>
+                </div>
+                {{ end }}
+
+            </div>
         </div>
         <div class="container mx-auto py-10 px-4">
             {{ with .Title }}
@@ -15,21 +45,6 @@
             <div class="prose prose-lg max-w-none">
                 {{ .Content }}
             </div>
-<!--            <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 items-center">-->
-<!--                &lt;!&ndash; Left: Content &ndash;&gt;-->
-<!--                <div class="prose prose-lg max-w-none">-->
-<!--                    {{ .Content }}-->
-<!--                </div>-->
-
-<!--                &lt;!&ndash; Right: Blog image &ndash;&gt;-->
-<!--                {{ with .Params.blogImage }}-->
-<!--                <div class="place-item-center">-->
-<!--                    <div class="relative w-full overflow-hidden rounded-2xl shadow-sm aspect-[3/5]">-->
-<!--                        {{ partial "utilities/image.html" (dict "src" . "class" "absolute inset-0 w-full h-full object-contain") }}-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                {{ end }}-->
-<!--            </div>-->
         </div>
     </section>
 <!--Dynamic CTA loading based on current page filename-->

@@ -8,6 +8,7 @@
 @import './home/_services.css';
 @import './home/_lead_capture.css';
 @import 'fonts.css';
+@import 'shared/_buttons.css';
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
 
@@ -17,7 +18,8 @@
         -moz-osx-font-smoothing: grayscale;
         font-family: 'Source Sans 3', sans-serif;
         font-weight: 400;
-        background-color: #FBF7F2;
+        background-color: var(--color-bg);
+        color: #0f172a;
         /*@apply bg-gradient-to-b to-tertiary via-white from-[#fdf8ef];*/
     }
     html {
@@ -69,18 +71,48 @@
     }
 }
 
-@theme {
-    --color-primary: {{ (default "#000099" site.Params.colors.primary) }};
-    --color-secondary: {{ (default "#e60000" site.Params.colors.secondary) }};
-    --color-tertiary: {{ (default "#ffc300" site.Params.colors.tertiary) }};
+/* Paragraph utility color used in sections like services */
+.paragraph-color {
+    color: #1f2937;
 }
 
-.font-outline-black {
-    text-shadow:
-            -1px -1px 0 #000,
-            1px -1px 0 #000,
-            -1px 1px 0 #000,
-            1px 1px 0 #000;
+@theme {
+    --color-primary: #166534;       /* Deep garden green */
+    --color-primary-soft: #bbf7d0;  /* Light grass green */
+    --color-secondary: #22c55e;     /* Accent green */
+    --color-accent: #84cc16;        /* Leafy lime accent */
+    --color-bg: #f8fff8;            /* Soft off‑white with a green hint */
+}
+
+/* Links with subtle green hover */
+a {
+    color: var(--color-white);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--color-secondary);
+}
+
+/* Cards / white panels (e.g., service cards) get a soft green shadow */
+.card,
+.rounded-2xl.bg-white,
+.rounded-xl.bg-white {
+    box-shadow: 0 18px 45px rgba(22, 101, 52, 0.12);
+    border-radius: 1rem;
+}
+
+/* Buttons that rely on .border-primary / .bg-primary */
+.border-primary {
+    border-color: var(--color-primary);
+}
+.bg-primary {
+    background-color: var(--color-primary);
+}
+.bg-primary\/80 {
+    background-color: rgba(22, 101, 52, 0.8);
+}
+.text-primary {
+    color: var(--color-primary);
 }
 
 .font-outline-white {
@@ -89,36 +121,6 @@
             1px -1px 0 #ffffff,
             -1px 1px 0 #ffffff,
             1px 1px 0 #ffffff;
-}
-
-.font-outline-primary {
-    text-shadow:
-            -1px -1px 0 #000099,
-            1px -1px 0 #000099,
-            -1px 1px 0 #000099,
-            1px 1px 0 #000099;
-}
-
-.font-outline-tertiary {
-    text-shadow:
-            -1px -1px 0 #f7ab08,
-            1px -1px 0 #f7ab08,
-            -1px 1px 0 #f7ab08,
-            1px 1px 0 #f7ab08;
-}
-
-.gradient-header {
-    background: #00007B;
-    background: linear-gradient(180deg, rgba(0, 0, 123, 1) 36%, rgba(28, 28, 186, 1) 100%);
-}
-
-.gradient-footer {
-    background: #00007B;
-    background: linear-gradient(0deg, rgba(0, 0, 123, 1) 46%, rgba(48, 48, 186, 1) 100%);
-}
-
-.paragraph-color{
-    @apply text-gray-700;
 }
 
 /*Hide video controls on mobile*/

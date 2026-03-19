@@ -1,34 +1,34 @@
 enable: true
 
-title: "Services Offered"
-text: "From soil correction to full yard transformation, we offer solutions that bring your lawn back to life."
+title: "Professional Landscaping That Makes a Difference"
+text: "We provide the services you need to improve curb appeal, maintain your property, and keep your landscape looking clean year-round."
 cards:
   - image: "images/before-after/lawn_maintenance_after.png"
     title: "Lawn Maintenance"
     text: "Routine mowing, edging, and trimming to keep your lawn clean, healthy, and consistently well-kept. We focus on detail so your property always looks sharp."
-    link: "/services/aeration/"
+    link: "/services/lawn-maintenance/"
 
   - image: "images/before-after/mulch_installation_after.jpg"
     title: "Mulch Installation"
     text: "Fresh mulch that improves curb appeal, retains soil moisture, and helps prevent weeds—giving your landscape beds a clean, finished look."
-    link: "/services/drainage-systems/"
+    link: "/services/mulch-installation/"
 
   - image: "images/before-after/shrub_hedge_trimming_after.jpg"
     title: "Shrub & Hedge Trimming"
     text: "Professional trimming and shaping to keep shrubs and hedges neat, balanced, and healthy throughout the year."
-    link: "/services/grading/"
+    link: "/services/shrub-hedge-trimming/"
 
   - image: "images/before-after/seasonal_cleanups_after.png"
     title: "Seasonal Cleanups"
     text: "Spring and fall cleanup services to remove leaves, debris, and overgrowth—preparing your property for the season ahead."
-    link: "/services/leveling/"
+    link: "/services/seasonal-cleanups/"
 
   - image: "images/before-after/flower_bed_maintenance_after.jpg"
     title: "Flower Bed Maintenance"
     text: "We maintain and refresh flower beds to keep them vibrant, weed-free, and visually appealing with clean edges and healthy plants."
-    link: "/services/overseeding/"
+    link: "/services/flower-bed-maintenance/"
 
   - image: "images/before-after/landscape_enhancements_after.png"
     title: "Landscape Enhancements"
     text: "Simple upgrades like plant installation, bed redesign, and minor improvements that elevate the overall look and structure of your outdoor space."
-    link: "/services/top-dressing/"
+    link: "/services/landscape-enhancements/"
