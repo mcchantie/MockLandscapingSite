@@ -8,7 +8,7 @@ draft: false
 
 ## Introduction
 
-Texas Top Dressing & Lawn Leveling ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+GreenLine Landscaping ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
 
 ## Information We Collect
 

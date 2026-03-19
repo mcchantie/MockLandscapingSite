@@ -1,0 +1,50 @@
+<section id="credibility" class="relative overflow-hidden bg-[#6b9413] text-white py-20 lg:py-24">
+    <!-- Background overlays -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#5f870f] via-[#6b9413] to-[#7aa51a]"></div>
+    <div class="absolute inset-0 bg-black/10"></div>
+
+    <!-- Decorative shapes -->
+    <div class="absolute -top-24 right-[18%] h-96 w-96 rounded-full bg-black/10 blur-sm"></div>
+    <div class="absolute bottom-0 left-[-40px] h-56 w-56 rounded-[40%] bg-white/5 rotate-12"></div>
+    <div class="absolute bottom-0 right-[-30px] h-64 w-64 rounded-[45%] bg-white/5 -rotate-12"></div>
+
+    <div class="relative z-10 container mx-auto px-6">
+        <!-- Intro -->
+        <div class="max-w-5xl mx-auto text-center mb-12">
+            <p class="text-sm md:text-base font-semibold uppercase tracking-[0.18em] text-white/70 mb-4">
+                {{  with .heading_1  }}{{  .  }}{{  end  }}
+            </p>
+
+            <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-5">
+                {{  with .heading_2  }}{{  .  }}{{  end  }}
+            </h2>
+
+            <p class="text-base md:text-lg text-white/85 max-w-4xl mx-auto">
+                {{  with .heading_3  }}{{  .  }}{{  end  }}
+            </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mb-10">
+            {{ range .stats }}
+            <div class="rounded-2xl bg-black/30 px-6 py-8 text-center shadow-lg backdrop-blur-sm">
+                <div class="text-3xl mb-4">{{ with .icon }}{{ . }}{{ end }}</div>
+                <div class="text-4xl font-bold mb-2">{{ with .focus }}{{ . }}{{ end }}</div>
+                <p class="text-sm uppercase tracking-wide text-white/80 font-semibold">
+                    {{ with .sub_focus }}{{ . }}{{ end }}
+                </p>
+            </div>
+            {{ end }}
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="flex flex-col md:flex-row gap-4 justify-center items-center max-w-4xl mx-auto">
+            {{ with .secondary_button }}
+            {{ partial "components/button/secondary" (dict "label" .label "href" .link) }}
+            {{ end }}
+            {{ with .primary_button }}
+                {{ partial "components/button/primary" (dict "label" .label "href" .link) }}
+            {{ end }}
+        </div>
+    </div>
+</section>

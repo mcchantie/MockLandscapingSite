@@ -1,0 +1,45 @@
+<section id="hero">
+    <div class="content-center relative overflow-hidden z-0 h-[55vh] md:h-108 lg:h-145 xl:h-175 bg-black">
+        <div class="absolute inset-0 bg-black/35 z-0"></div>
+
+        <div class="absolute z-10 top-1/2 -translate-y-1/2 left-[6%] max-w-3xl px-4">
+            <p class="text-white uppercase tracking-[0.2em] mb-3 text-sm md:text-base">
+                Professional Landscaping Services
+            </p>
+
+            <h1 class="text-white font-outline-black mb-3">
+                Beautiful Lawns.
+            </h1>
+            <h1 class="text-primary font-outline-white mb-3">
+                Clean Landscapes.
+            </h1>
+            <h1 class="text-secondary font-outline-white mb-5">
+                Curb Appeal That Lasts.
+            </h1>
+
+            <p class="text-white text-base md:text-lg max-w-2xl mb-6">
+                From routine lawn care to landscape enhancements, we help Texas homeowners
+                keep their properties healthy, polished, and easy to enjoy year-round.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a
+                        href="#quote"
+                        class="inline-flex items-center justify-center bg-primary text-white px-6 py-3 rounded-md font-semibold hover:opacity-90 transition"
+                >
+                    Get a Free Quote
+                </a>
+                <a
+                        href="#services"
+                        class="inline-flex items-center justify-center bg-white/10 text-white border border-white/40 px-6 py-3 rounded-md font-semibold hover:bg-white/20 transition"
+                >
+                    View Services
+                </a>
+            </div>
+        </div>
+
+        {{ with .video }}
+        {{ partial "utilities/image.html" (dict "src" . "class" "absolute inset-0 z-[-1] object-[50%_50%] w-full h-full object-cover") }}
+        {{ end }}
+    </div>
+</section>

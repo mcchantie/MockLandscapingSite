@@ -1,0 +1,31 @@
+enable: true
+
+heading_1: "Trusted Texas Landscaping"
+heading_2: "Beautiful Lawns. Reliable Service. Results You Can See."
+heading_3: "We help homeowners and properties stay clean, healthy, and well-kept with
+                dependable landscaping services designed to improve curb appeal and protect
+                long-term property value."
+stats:
+  - icon: 🌿
+    focus: 10+
+    sub_focus: Years of Experience
+  - icon: 🏡
+    focus: 500+
+    sub_focus: Properties Served
+  - icon: ✅
+    focus: 1,000+
+    sub_focus: Jobs Completed
+  - icon: ⭐
+    focus: 5-Star
+    sub_focus: Customer Focus
+  - icon: 📍
+    focus: Local
+    sub_focus: Katy & Houston Area
+
+primary_button:
+  label: "Request a Quote"
+  link: "/#quote"
+
+secondary_button:
+  label: "Call for a Free Estimate"
+  link: "tel:+15551234567"

@@ -9,50 +9,49 @@
 {{ end }}
 {{ end }}
 
-<section id="about-us" class="pt-[3vh] overflow-x-hidden">
-    <div class="flex flex-col lg:grid lg:grid-rows-1 lg:grid-cols-2 justify-center relative">
-<!--        <div class="flex flex-col md:grid md:grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 justify-center relative">-->
-<!--        <div class="grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 justify-center relative">-->
-            <!-- TEXT COLUMN -->
-            <div class="relative mx-[2vw] py-[5vw] sm:mx-[7vw] lg:ml-[5vw]">
-                <div class="lg:hidden">
-                    <div class="flex justify-center">
-                        {{ partial "utilities/image.html" (dict "src" "images/logo.png" "class" "size-39") }}
-                    </div>
-                    {{ with .title }}
-                        <h2 class="text-primary text-center mb-6 bg-white/20">{{ . | safeHTML }}</h2>
-                    {{ end }}
-                </div>
+<section id="about-us" class="overflow-x-hidden bg-neutral-100 py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
 
-                <div class="hidden lg:flex justify-center">
-                    {{ partial "utilities/image.html" (dict "src" "images/logo.png" "class" "aspect-square lg:size-35") }}
+        <!-- Centered Header -->
+        <div class="mx-auto mb-14 max-w-5xl text-center">
+            {{ with .title }}
+            <h2 class="text-primary mb-4 max-w-4xl mx-auto">
+                {{ . | safeHTML }}
+            </h2>
+            {{ end }}
 
-                {{ with .title }}
-                <h2 class="text-primary place-self-center bg-white/20">{{ . | safeHTML }}</h2>
-                {{ end }}
-                </div>
-
-                <div class="h-1 w-full bg-primary mt-2 mb-6 rounded"></div>
-
-                <div class="pl-6 border-l-4 border-primary mr-4 bg-white/20">
-                    {{ with .text }}
-                    <h5 class="leading-9 paragraph-color">{{ . }}</h5>
-                    {{ end }}
-                </div>
-            </div>
-
-            <!-- IMAGE STACK COLUMN -->
-            <div id="about-us-image" class="relative w-full">
-
-                <!-- Backdrop image (now pushed partially off-screen on lg+) -->
-<!--                {{ partial "utilities/image" (dict "src" "images/about-us-backdrop.png" "class" "absolute z-0 scale-y-80 scale-x-80 h-full translate-x-45 -translate-y-2 opacity-55") }}-->
-                {{ partial "utilities/image" (dict "src" "images/about-us-backdrop.png" "class" "about-us-backdrop") }}
-
-                <!-- Foreground slide-in image (centered over backdrop) -->
-                {{ partial "utilities/image" (dict "src" "images/about-us-top-dressing.png" "class" "about-slide translate-x-2/5 opacity-0") }}
-
-                <!-- Maintains container height -->
-<!--                <div class="aspect-[16/9] md:aspect-[4/3]"></div>-->
-            </div>
+            <div class="mx-auto h-1 w-40 rounded bg-primary/80"></div>
         </div>
+
+        <!-- Content Row -->
+        <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+
+            <!-- Image Column -->
+            <div class="order-2 lg:order-1">
+                <div class="relative">
+                    <div class="absolute inset-0 translate-x-4 translate-y-4 rounded-sm bg-primary/15"></div>
+
+                    <div class="relative overflow-hidden border-[3px] border-primary/80 bg-white shadow-lg">
+                        {{ partial "utilities/image.html" (dict "src" "images/about-us-top-dressing.png" "class" "w-full h-full object-cover aspect-[16/10]") }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Column -->
+            <div class="order-1 lg:order-2">
+                <div class="space-y-6">
+                    {{ with .text }}
+                    <div class="text-paragraph-color text-lg leading-8">
+                        {{ range split . "\n" }}
+                        {{ if . }}
+                        <p class="mb-6">{{ . }}</p>
+                        {{ end }}
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+
+        </div>
+    </div>
 </section>

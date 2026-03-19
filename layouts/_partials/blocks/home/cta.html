@@ -1,17 +1,15 @@
-<div class="relative z-10 mb-[5vh]">
-
+<div class="relative z-10 h-full flex flex-col justify-center text-center lg:text-left">
     {{ with .title }}
-    <h2 class="text-white font-outline-primary text-center mb-4">{{ . }}</h2>
+    <h2 class="text-white mb-6">
+        {{ . }}
+    </h2>
     {{ end }}
 
-    <div class="vignette">
-        {{ range $index, $element := .text }}
-            <h5 class="md:hidden leading-9 text-shadow-white font-semibold text-center">{{ $element }}</h5>
-            <h6 class="hidden md:flex leading-9 text-shadow-white font-semibold text-center">{{ $element }}</h6>
-            {{ if lt $index (sub (len $.text) 1) }}  <!-- Only add <br> if not the last item; $index < (len .text) - 1) -->
-                <div class="w-full h-[2vh]"></div>
-            {{ end }}
+    <div class="space-y-5 max-w-2xl mx-auto lg:mx-0">
+        {{ range .text }}
+        <p class="text-white/90 text-base md:text-lg leading-8 font-medium">
+            {{ . }}
+        </p>
         {{ end }}
     </div>
-
 </div>

@@ -23,146 +23,139 @@
 <section id="contact-us">
     <div class="relative z-10">
         {{ with .title }}
-        <h2 class="text-white mb-4 text-center font-outline-primary">{{ . }}</h2>
+        <h3 class="text-white text-center mb-8">
+            {{ . }}
+        </h3>
         {{ end }}
 
-        <!-- Center the form and give it a card-like look -->
-        <div class="flex justify-center">
+        <div class="rounded-2xl bg-white p-6 md:p-8 shadow-lg">
             <form
                     action="/api/send_email.php"
                     method="post"
                     enctype="multipart/form-data"
-                    class="vignette text-xl"
+                    class="text-base"
             >
-                <!-- Honeypot field for spam prevention -->
                 <input type="text" name="website" value="" style="display:none;">
 
-                <!-- 2-column grid for the main fields, centered in their cells -->
-                <div class="w-full max-w-xs md:max-w-sm xl:max-w-md mx-auto">
-                <div class="grid gap-x-8 gap-y-6 mb-10 xl:grid-cols-2 pt-[1vw] place-items-center">
+                <div class="grid gap-x-6 gap-y-6 mb-8 md:grid-cols-2">
                     {{ range .fields }}
-                    <ul class="w-full">
-                        <li class="leading-4">
-                            <label for="{{ .name }}" class="font-bold">{{ .label }}</label>
-                            <div class="error-msg opacity-0" id="{{ .name }}-error"> {{ .error }}</div>
-                        </li>
-                        <li>
-                            <input
-                                    class="w-full border border-black rounded-lg p-2 text-base"
-                                    type="{{ .type }}"
-                                    id="{{ .name }}"
-                                    name="{{ .name }}"
-                                    inputmode="{{ .inputmode }}"
-                                    autocomplete="{{ .autocomplete }}"
-                                    placeholder="{{ .placeholder }}"
-                                    title="{{ .title }}"
-                                    maxlength="{{ .maxlength }}"
-                            >
-                        </li>
-                    </ul>
+                    <div>
+                        <label for="{{ .name }}" class="mb-2 block font-semibold text-gray-900">
+                            {{ .label }}
+                        </label>
+                        <div class="error-msg opacity-0 mb-2 text-sm" id="{{ .name }}-error">
+                            {{ .error }}
+                        </div>
+                        <input
+                                class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary"
+                                type="{{ .type }}"
+                                id="{{ .name }}"
+                                name="{{ .name }}"
+                                inputmode="{{ .inputmode }}"
+                                autocomplete="{{ .autocomplete }}"
+                                placeholder="{{ .placeholder }}"
+                                title="{{ .title }}"
+                                maxlength="{{ .maxlength }}"
+                        >
+                    </div>
                     {{ end }}
                 </div>
 
-                <p class="font-bold mb-3">How should we contact you?</p>
-                <div class="mb-6 flex items-center gap-6">
-                    <label for="prefer_email" class="flex items-center gap-2 cursor-pointer">
-                        <input
-                                type="radio"
-                                id="prefer_email"
-                                name="contact_preference"
-                                value="email"
-                                class="h-5 w-5"
-                                checked />  <!-- Default selection -->
-                        <span>Email</span>
-                    </label>
+                <div class="mb-8">
+                    <p class="font-semibold text-gray-900 mb-3">Preferred contact method</p>
+                    <div class="flex flex-wrap gap-6">
+                        <label for="prefer_email" class="flex items-center gap-2 cursor-pointer text-gray-800">
+                            <input
+                                    type="radio"
+                                    id="prefer_email"
+                                    name="contact_preference"
+                                    value="email"
+                                    class="h-4 w-4"
+                                    checked
+                            >
+                            <span>Email</span>
+                        </label>
 
-                    <label for="prefer_phone" class="flex items-center gap-2 cursor-pointer">
-                        <input
-                                type="radio"
-                                id="prefer_phone"
-                                name="contact_preference"
-                                value="phone"
-                                class="h-5 w-5"
-                        >
-                        <span>Phone</span>
-                    </label>
+                        <label for="prefer_phone" class="flex items-center gap-2 cursor-pointer text-gray-800">
+                            <input
+                                    type="radio"
+                                    id="prefer_phone"
+                                    name="contact_preference"
+                                    value="phone"
+                                    class="h-4 w-4"
+                            >
+                            <span>Phone</span>
+                        </label>
+                    </div>
                 </div>
 
-                <div class="mb-5 flex flex-col">
-                    <label for="message" class="font-bold">Leave a message:</label>
+                <div class="mb-8">
+                    <label for="message" class="mb-2 block font-semibold text-gray-900">
+                        Tell us about your project
+                    </label>
                     <textarea
                             id="message"
                             name="message"
                             rows="5"
-                            placeholder="How can we help?"
-                            class="mt-2 border-2 rounded-md p-3 text-base"
+                            placeholder="Tell us what services you need, your location, and anything else that would help us give you a quote."
+                            class="w-full rounded-lg border border-gray-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary"
                     ></textarea>
-                    <div class="error-msg opacity-0" id="message-error">Please leave us a message</div>
-                </div>
+                    <div class="error-msg opacity-0 mt-2 text-sm" id="message-error">
+                        Please leave us a message
+                    </div>
                 </div>
 
-                <!-- Smooth collapsible quote menu -->
-                <div id="collapsable-menu" class="border-t pt-8">
-                    <div class="group flex flex-col items-center">
-
-                        <!-- Checkbox + label row -->
-                        <div id="quote-box" class="flex items-center gap-2 cursor-pointer select-none">
+                <div id="collapsable-menu" class="border-t border-gray-200 pt-8">
+                    <div class="group">
+                        <div id="quote-box" class="flex items-center justify-center gap-3 cursor-pointer select-none mb-4">
                             <input
                                     id="quote"
                                     name="quote"
                                     type="checkbox"
                                     class="h-5 w-5"
                             >
-                            <label for="quote" class="font-bold cursor-pointer">
-                                Asking for a quote?
+                            <label for="quote" class="font-semibold cursor-pointer text-gray-900">
+                                I’m requesting a quote
                             </label>
                         </div>
 
-                        <!-- MENU revealed (expands; pushes arrow down) -->
                         <div
                                 id="menu-content"
-                                class="mt-4 w-full max-h-0 overflow-hidden opacity-0
-       transition-[max-height,opacity] duration-800 ease-out
-       group-has-[:checked]:max-h-[1000px]
-       group-has-[:checked]:opacity-100"
+                                class="max-h-0 overflow-hidden opacity-0 transition-[max-height,opacity] duration-700 ease-out group-has-[:checked]:max-h-[1200px] group-has-[:checked]:opacity-100"
                         >
-                            <div class="flex flex-col items-center align-center mb-6 font-medium">
-                                Service(s) Needed
-                                <div class="error-msg opacity-0" id="services-error">Please select a service</div>
+                            <div class="mb-6 text-center">
+                                <p class="font-semibold text-gray-900">Service(s) Needed</p>
+                                <div class="error-msg opacity-0 mt-2 text-sm" id="services-error">
+                                    Please select a service
+                                </div>
                             </div>
 
-                            <div id="services-checklist" class="grid gap-2 w-11/12 mx-auto grid-cols-[repeat(auto-fit,minmax(10rem,1fr))]">
+                            <div id="services-checklist" class="grid gap-3 mb-8 sm:grid-cols-2">
                                 {{ range .services }}
-                                <div>
-                                    <label class="inline-flex items-center gap-2 cursor-pointer">
-                                        <input
-                                                type="checkbox"
-                                                id="{{ . }}"
-                                                name="services[]"
-                                                value="{{ . }}"
-                                        >
-                                        <span>{{ . }}</span>
-                                    </label>
-                                </div>
+                                <label class="flex items-center gap-3 rounded-lg border border-gray-200 px-4 py-3 cursor-pointer hover:bg-gray-50">
+                                    <input
+                                            type="checkbox"
+                                            id="{{ . }}"
+                                            name="services[]"
+                                            value="{{ . }}"
+                                    >
+                                    <span class="text-gray-800">{{ . }}</span>
+                                </label>
                                 {{ end }}
                             </div>
 
-                            <!-- Upload attachments block -->
-                            <div class="mt-10 rounded-lg border border-dashed border-gray-400 bg-gray-50 px-4 pt-6 pb-4">
-                                <p class="text-center mb-2 text-base font-medium">
-                                    Attach photos or a video of your yard to get a faster quote!
+                            <div class="rounded-xl border border-dashed border-gray-300 bg-gray-50 px-4 py-5">
+                                <p class="text-center mb-2 text-base font-semibold text-gray-900">
+                                    Upload photos or a video for a faster quote
                                 </p>
-                                <p class="text-center text-sm text-gray-600">
-                                    Hold the Ctrl key to upload multiple files (Command on Mac OS).
+                                <p class="text-center text-sm text-gray-600 mb-1">
+                                    Hold Ctrl to upload multiple files (Command on Mac).
                                 </p>
-                                <p class="text-center mb-4 text-sm text-gray-600">
-                                    Max upload size is 20MB. Files must be 10MB or smaller.
+                                <p class="text-center text-sm text-gray-600 mb-4">
+                                    Max total upload size: 20MB. Each file must be 10MB or smaller.
                                 </p>
 
-                                <label
-                                        for="attachments"
-                                        class="mb-2 block text-sm font-semibold text-gray-800"
-                                >
+                                <label for="attachments" class="mb-2 block text-sm font-semibold text-gray-800">
                                     Upload Attachments
                                 </label>
 
@@ -172,53 +165,47 @@
                                         type="file"
                                         multiple
                                         accept="image/*,video/*"
-                                        class="block w-full text-sm paragraph-color
-           file:mr-4 file:rounded-md file:border-0
-           file:bg-primary file:px-4 file:py-2
-           file:text-sm file:font-semibold file:text-white
-           hover:file:bg-primary/90"
+                                        class="block w-full text-sm text-gray-700
+                    file:mr-4 file:rounded-md file:border-0
+                    file:bg-primary file:px-4 file:py-2
+                    file:text-sm file:font-semibold file:text-white
+                    hover:file:bg-primary/90"
                                 >
 
                                 <p class="mt-2 text-xs text-gray-500">
-                                    Tip: Clear, well-lit photos help us give you a more accurate quote.
+                                    Clear, well-lit photos help us provide a more accurate quote.
                                 </p>
-                                <p class="error-msg opacity-0" id="attachments-error">
+                                <p class="error-msg opacity-0 mt-2 text-sm" id="attachments-error">
                                     Files exceed 20MB.
                                 </p>
                             </div>
                         </div>
 
-                        <!-- LINE + ARROW (now sits between upload section and submit) -->
-                        <div id="arrow" class="mt-3 flex justify-center w-full overflow-visible">
-                            <div
-                                    class="relative w-56 h-6
-         transition-transform duration-800 ease-out"
-                            >
-                                <!-- line -->
-                                <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px bg-gray-400"></div>
-
-                                <!-- arrow -->
+                        <div id="arrow" class="mt-4 flex justify-center">
+                            <div class="relative w-56 h-6 transition-transform duration-800 ease-out">
+                                <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px bg-gray-300"></div>
                                 <div
-                                        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-           transition-transform duration-400 ease-out
-           group-has-[:checked]:rotate-180"
+                                        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-400 ease-out group-has-[:checked]:rotate-180"
                                 >
                                     {{ partial "icons/drop_down_arrow.html" }}
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <!-- Submit button centered under everything -->
-                    <div class="mt-3 flex flex-col justify-center items-center">
-                        <div class="success-msg opacity-0" id="submit-message">Thank you for contacting us! We will get back to you shortly.</div>
-                        <input
-                                class="font-bold border border-black rounded-lg px-8 py-3 cursor-pointer hover:bg-gray-400 hover:text-white transition"
-                                type="submit"
-                                id="submit"
-                                name="submit"
-                                value="Talk to a lawn leveling expert!"
-                        >
+                </div>
+
+                <div class="mt-8 flex flex-col items-center">
+                    <div class="success-msg opacity-0 mb-4 text-center" id="submit-message">
+                        Thank you for contacting us! We will get back to you shortly.
+                    </div>
+
+                    <input
+                            class="inline-flex cursor-pointer rounded-lg bg-primary px-8 py-3 font-semibold text-white transition hover:bg-primary/90"
+                            type="submit"
+                            id="submit"
+                            name="submit"
+                            value="Request My Estimate"
+                    >
                 </div>
             </form>
         </div>

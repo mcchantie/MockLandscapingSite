@@ -1,13 +1,36 @@
-<section id="lead_capture" class="mt-20">
-    <div class="w-full h-10 overflow-hidden">
-        {{ partial "utilities/image" (dict "src" "images/about-us-backdrop.png" "class" "z-20 w-full h-full translate-y-5 scale-x-130 opacity-55") }}
-    </div>
-    <div class="lead-capture-container">
-        {{ with .Site.Data.home.cta }}{{ partial "blocks/home/cta.html" . }}{{ end }}
-        {{ with .Site.Data.home.contact_form }}{{ partial "blocks/home/contact_form.html" . }}{{ end }}
-        {{ with .Site.Data.home.cta.video  }}
-        {{ partial "utilities/stylable_video.html" (dict "src" . "class" "absolute cta-video z-0 inset-0 object-cover w-full h-full" ) }}
+<section id="lead_capture" class="mt-20 bg-neutral-100">
+    <div class="relative overflow-hidden py-16 md:py-24">
+        <!-- Optional soft backdrop -->
+        <div class="absolute inset-x-0 top-0 h-32 opacity-10 pointer-events-none">
+            {{ partial "utilities/image" (dict "src" "images/about-us-backdrop.png" "class" "w-full h-full object-cover") }}
+        </div>
+
+        {{ with .Site.Data.home.cta.video }}
+        {{ partial "utilities/stylable_video.html" (dict "src" . "class" "absolute inset-0 z-0 h-full w-full object-cover opacity-10") }}
         {{ end }}
+
+        <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
+            <div class="rounded-2xl bg-primary/95 shadow-xl overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
+                    <div class="px-6 py-12 md:px-10 md:py-14 lg:border-r lg:border-white/15">
+                        {{ with .Site.Data.home.cta }}
+                        {{ partial "blocks/home/cta.html" . }}
+                        {{ end }}
+                    </div>
+
+                    <div class="px-6 py-12 md:px-10 md:py-14">
+                        {{ with .Site.Data.home.contact_form }}
+                        {{ partial "blocks/home/contact_form.html" . }}
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=17MdJBTA_tXZZBbAWnIgsnt6NJAunJwg&ehbc=2E312F&noprof=1" class="w-full h-150"></iframe>
+
+<iframe
+        src="https://www.google.com/maps/d/u/0/embed?mid=17MdJBTA_tXZZBbAWnIgsnt6NJAunJwg&ehbc=2E312F&noprof=1"
+        class="w-full h-120 md:h-150 border-0"
+        loading="lazy"
+></iframe>
