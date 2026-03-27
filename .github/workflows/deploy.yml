@@ -1,0 +1,89 @@
+name: Deploy (SSH)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      # Must install node dependencies before building hugo site
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 0.148.2
+          extended: true
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22.x'
+          cache: true
+
+      - name: Vendor Hugo modules
+        run: hugo mod vendor
+
+      - name: Build Hugo site
+        run: hugo --minify --environment staging
+
+      - name: Deploy public/ to landscaping/public_html on server via rsync
+        uses: burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avzr --delete --exclude='.git*' --exclude='node_modules'
+          path: public/
+          remote_path: /home/locanead/landscaping/public_html/
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_port: ${{ secrets.SSH_PORT }}
+          remote_user: ${{ secrets.LOCAL_ROOTS_USERNAME }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy composer.json to server via rsync
+        uses: burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avzr
+          path: ./composer.json
+          remote_path: /home/locanead/landscaping/public_html/
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_port: ${{ secrets.SSH_PORT }}
+          remote_user: ${{ secrets.LOCAL_ROOTS_USERNAME }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy composer.lock to server via rsync
+        uses: burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avzr
+          path: ./composer.lock
+          remote_path: /home/locanead/landscaping/public_html/
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_port: ${{ secrets.SSH_PORT }}
+          remote_user: ${{ secrets.LOCAL_ROOTS_USERNAME }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: SSH and run Composer on server
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.LOCAL_ROOTS_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/locanead/landscaping/public_html/
+            composer install --no-dev --prefer-dist --no-progress -o
